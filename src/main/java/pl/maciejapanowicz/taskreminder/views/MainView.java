@@ -6,5 +6,4 @@ public class MainView {
         System.out.println("Hi mate. This project is about to start soon.");
         System.out.println("Brace yourself!");
     }
-
 }
