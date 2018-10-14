@@ -1,9 +1,9 @@
 package pl.maciejapanowicz.taskreminder.controllers;
 
 import pl.maciejapanowicz.taskreminder.models.User;
+import pl.maciejapanowicz.taskreminder.models.services.LoginService;
 import pl.maciejapanowicz.taskreminder.models.services.RegisterService;
 import pl.maciejapanowicz.taskreminder.views.LoginView;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,11 +11,13 @@ public class AuthController {
     private LoginView loginView;
     private Scanner scanner;
     private RegisterService registerService;
+    private LoginService loginService;
 
     public AuthController(){
         loginView = new LoginView();
         scanner = new Scanner(System.in);
         registerService = new RegisterService();
+        loginService = new LoginService();
     }
 
     public void start(){
@@ -52,16 +54,20 @@ public class AuthController {
             username = scanner.nextLine();
             loginView.askForPassword();
             password = scanner.nextLine();
-
-            //todo add login service
-            isLogin = true;
+            try {
+                isLogin = loginService.tryToLogin(username,password);
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.exit(-1);
+            }
         }
         while (!isLogin);
-        System.out.println("If log in correctly -> go to the user main panel. This module is not ready yet.");
+        loginView.showMessageAfterLogIn(username);
+        //todo  Here, the user has been successfully logged in. Create user's main menu and user's view.
     }
 
     private void getRegisterData(){
-        String username, password, passwordRepeted;
+        String username, password, passwordRepeated;
         boolean isRegister = false;
 
         do {
@@ -71,24 +77,26 @@ public class AuthController {
         loginView.askForPassword();
         password = scanner.nextLine();
         loginView.askForPasswordToBeRepeated();
-        passwordRepeted = scanner.nextLine();
+        passwordRepeated = scanner.nextLine();
 
-        if (!password.equals(passwordRepeted)){
+        if (!password.equals(passwordRepeated)){
             loginView.informThatPasswordsAreNotEqual();
             continue;
         }
-            User user = new User(username,password);
+        User user = new User(username,password);
 
-        try {
-                isRegister = registerService.userRegistration(user);
-        } catch (IOException e) {
-            System.out.println("something went wrong");
+        try { isRegister = registerService.userRegistration(user);
+            loginView.confirmThatNewUserHasBeenAdded(username);
+        }
+        catch (IOException e) {
+            loginView.showErrorMessageWhileLoginProcess();
             e.printStackTrace();
             System.exit(-1);
         }
-            if (!isRegister){
-                System.out.println("Sorry, this login is busy.");
-            }
-        }while (!isRegister);
+        if (!isRegister){
+            loginView.informThatLoginIsBusy();
+        }
+        }
+        while (!isRegister);
     }
 }

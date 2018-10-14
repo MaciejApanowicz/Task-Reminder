@@ -1,7 +1,6 @@
 package pl.maciejapanowicz.taskreminder.models.services;
 
 import pl.maciejapanowicz.taskreminder.models.User;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class RegisterService {
         return true;
     }
 
-    public boolean checkIfLoginIsFree(String username) throws IOException {
+    private boolean checkIfLoginIsFree(String username) throws IOException {
         List<User> users = fileService.readUsers();
         return users.stream().anyMatch(s -> s.getUsername().equals(username));
     }

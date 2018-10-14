@@ -8,8 +8,4 @@ public class UserController {
     public UserController(){
         userView = new UserView();
     }
-
-    public void start(){
-        userView.welcome();
-    }
 }
