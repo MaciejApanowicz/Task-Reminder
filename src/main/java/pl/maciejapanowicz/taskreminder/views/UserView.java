@@ -1,6 +1,6 @@
 package pl.maciejapanowicz.taskreminder.views;
 
-public class MainView {
+public class UserView {
 
     public void welcome(){
         System.out.println("Hi mate. This project is about to start soon.");
