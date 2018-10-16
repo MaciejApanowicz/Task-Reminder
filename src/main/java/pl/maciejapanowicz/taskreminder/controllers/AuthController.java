@@ -1,6 +1,7 @@
 package pl.maciejapanowicz.taskreminder.controllers;
 
 import pl.maciejapanowicz.taskreminder.models.User;
+import pl.maciejapanowicz.taskreminder.models.UserLoggedIn;
 import pl.maciejapanowicz.taskreminder.models.services.LoginService;
 import pl.maciejapanowicz.taskreminder.models.services.RegisterService;
 import pl.maciejapanowicz.taskreminder.views.LoginView;
@@ -12,6 +13,7 @@ public class AuthController {
     private Scanner scanner;
     private RegisterService registerService;
     private LoginService loginService;
+    private UserLoggedIn INSTANCE = UserLoggedIn.getINSTANCE();
 
     public AuthController(){
         loginView = new LoginView();
@@ -56,14 +58,14 @@ public class AuthController {
             password = scanner.nextLine();
             try {
                 isLogin = loginService.tryToLogin(username,password);
+                if (!isLogin) loginView.showUnableToLogInMessage();
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(-1);
             }
         }
         while (!isLogin);
-        loginView.showMessageAfterLogIn(username);
-        //todo  Here, the user has been successfully logged in. Create user's main menu and user's view.
+        goToMainMenuForLoggedInUser(username);
     }
 
     private void getRegisterData(){
@@ -87,6 +89,7 @@ public class AuthController {
 
         try { isRegister = registerService.userRegistration(user);
             loginView.confirmThatNewUserHasBeenAdded(username);
+            goToMainMenuForLoggedInUser(username);
         }
         catch (IOException e) {
             loginView.showErrorMessageWhileLoginProcess();
@@ -98,5 +101,11 @@ public class AuthController {
         }
         }
         while (!isRegister);
+    }
+
+    private void goToMainMenuForLoggedInUser(String username){
+        INSTANCE.setUserLogin(true);
+        INSTANCE.setUsername(username);
+        new UserController().startMainMenu();
     }
 }

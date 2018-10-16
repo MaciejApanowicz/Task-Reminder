@@ -1,7 +1,6 @@
 package pl.maciejapanowicz.taskreminder.models.services;
 
 import pl.maciejapanowicz.taskreminder.models.User;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
