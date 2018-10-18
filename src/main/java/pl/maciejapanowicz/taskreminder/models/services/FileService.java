@@ -1,5 +1,6 @@
 package pl.maciejapanowicz.taskreminder.models.services;
 
+import pl.maciejapanowicz.taskreminder.models.Task;
 import pl.maciejapanowicz.taskreminder.models.User;
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +38,12 @@ public class FileService {
             users.add(new User(usernameAndPassword[0],usernameAndPassword[1]));
         }
         return users;
+    }
+
+    public void addTaskToFile (Task task) throws IOException{
+        File file = new File("Tasks.txt");
+        //todo create method to write down a task to the file
+        System.out.println("próba dodania nowego zadania do pliku");
     }
 }
 

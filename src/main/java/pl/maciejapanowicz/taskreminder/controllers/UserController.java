@@ -1,16 +1,23 @@
 package pl.maciejapanowicz.taskreminder.controllers;
 
+import pl.maciejapanowicz.taskreminder.models.Task;
 import pl.maciejapanowicz.taskreminder.models.UserLoggedIn;
+import pl.maciejapanowicz.taskreminder.models.services.TaskService;
 import pl.maciejapanowicz.taskreminder.views.UserView;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 class UserController {
     private UserView userView;
     private Scanner scanner;
+    private TaskService taskService;
 
     UserController(){
         userView = new UserView();
         scanner = new Scanner(System.in);
+        taskService = new TaskService();
+
     }
 
     void startMainMenu(){
@@ -24,7 +31,7 @@ class UserController {
 
             switch (userAnswer){
                 case "1": {
-                    //todo  Create add task logic
+                    addNewTask();
                     break;
                 }
                 case "2": {
@@ -41,4 +48,22 @@ class UserController {
         }
         while (!userAnswer.equals("3"));
     }
+
+    private void addNewTask(){
+        String taskContent;
+        userView.askForContentOfTheTask();
+        taskContent = scanner.nextLine();
+
+        Task task = new Task(UserLoggedIn.getINSTANCE().getUsername(),taskContent,false);
+
+        try {
+           taskService.addTask(task);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        //todo confirm that task has been added
+
+    }
 }
+

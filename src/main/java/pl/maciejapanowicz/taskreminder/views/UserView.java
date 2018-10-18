@@ -16,5 +16,8 @@ public class UserView {
     public void informAboutWrongCommand(){
         System.out.println("Wrong command.");
     }
+    public void askForContentOfTheTask(){
+        System.out.println("Enter the content of the task");
+    }
 
 }
