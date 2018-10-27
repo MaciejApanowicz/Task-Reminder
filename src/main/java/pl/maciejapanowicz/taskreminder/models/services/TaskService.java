@@ -1,7 +1,6 @@
 package pl.maciejapanowicz.taskreminder.models.services;
 
 import pl.maciejapanowicz.taskreminder.models.Task;
-
 import java.io.IOException;
 
 public class TaskService {

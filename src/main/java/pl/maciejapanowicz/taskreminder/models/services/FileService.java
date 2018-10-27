@@ -42,8 +42,16 @@ public class FileService {
 
     public void addTaskToFile (Task task) throws IOException{
         File file = new File("Tasks.txt");
-        //todo create method to write down a task to the file
-        System.out.println("próba dodania nowego zadania do pliku");
+
+        String taskString = task.getOwner() + "|" + task.getContent() + "|" + task.isItDone() + "\r\n";
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Files.write(file.toPath(),taskString.getBytes(),StandardOpenOption.APPEND);
     }
 }
 

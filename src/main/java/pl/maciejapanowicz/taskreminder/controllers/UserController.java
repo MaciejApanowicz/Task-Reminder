@@ -4,7 +4,6 @@ import pl.maciejapanowicz.taskreminder.models.Task;
 import pl.maciejapanowicz.taskreminder.models.UserLoggedIn;
 import pl.maciejapanowicz.taskreminder.models.services.TaskService;
 import pl.maciejapanowicz.taskreminder.views.UserView;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -17,7 +16,6 @@ class UserController {
         userView = new UserView();
         scanner = new Scanner(System.in);
         taskService = new TaskService();
-
     }
 
     void startMainMenu(){
@@ -35,10 +33,11 @@ class UserController {
                     break;
                 }
                 case "2": {
-                    //todo Create marking task as completed logic
+                    //todo Create logic for marking task as completed
                     break;
                 }
                 case "3":{
+                    userView.sayGoodbyeToTheUser(UserLoggedIn.getINSTANCE().getUsername());
                     break;
                 }
                 default: {
@@ -53,7 +52,6 @@ class UserController {
         String taskContent;
         userView.askForContentOfTheTask();
         taskContent = scanner.nextLine();
-
         Task task = new Task(UserLoggedIn.getINSTANCE().getUsername(),taskContent,false);
 
         try {
@@ -62,8 +60,7 @@ class UserController {
             e.printStackTrace();
             System.exit(-1);
         }
-        //todo confirm that task has been added
-
+        userView.confirmTaskAdded(UserLoggedIn.getINSTANCE().getUsername(),taskContent);
     }
 }
 
