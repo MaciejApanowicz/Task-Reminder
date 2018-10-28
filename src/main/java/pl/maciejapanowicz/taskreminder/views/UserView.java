@@ -7,8 +7,10 @@ public class UserView {
     }
     public void showUserMenu(){
         System.out.println("1. Add new task");
-        System.out.println("2. Mark task as completed");
-        System.out.println("3. Exit");
+        System.out.println("2. Show my all tasks");
+        System.out.println("3. Mark task as completed");
+        System.out.println("4. Logout");
+        System.out.println("5. Exit Task Reminder");
     }
     public void getUserAnswer(){
         System.out.println("Now, type your choice from options available in menu");

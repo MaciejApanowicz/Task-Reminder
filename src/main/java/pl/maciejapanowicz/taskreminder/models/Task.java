@@ -20,4 +20,13 @@ public class Task {
     public boolean isItDone(){
         return isDone;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "owner='" + owner + '\'' +
+                ", content='" + content + '\'' +
+                ", isDone=" + isDone +
+                '}';
+    }
 }

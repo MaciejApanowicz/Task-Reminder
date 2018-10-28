@@ -18,7 +18,7 @@ class UserController {
         taskService = new TaskService();
     }
 
-    void startMainMenu(){
+    void startMainMenu()  {
         userView.showWelcomeMessage(UserLoggedIn.getINSTANCE().getUsername());
         userView.showUserMenu();
         String userAnswer;
@@ -33,11 +33,24 @@ class UserController {
                     break;
                 }
                 case "2": {
+                    try {
+                        taskService.getUserTasks(UserLoggedIn.getINSTANCE().getUsername());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     //todo Create logic for marking task as completed
                     break;
                 }
                 case "3":{
-                    userView.sayGoodbyeToTheUser(UserLoggedIn.getINSTANCE().getUsername());
+                    System.out.println("In progress. Not ready yet");
+                    break;
+                }
+                case "4":{
+                    new AuthController().start();
+                    break;
+                }
+                case "5":{
+                        userView.sayGoodbyeToTheUser(UserLoggedIn.getINSTANCE().getUsername());
                     break;
                 }
                 default: {
@@ -45,7 +58,7 @@ class UserController {
                 }
             }
         }
-        while (!userAnswer.equals("3"));
+        while (!userAnswer.equals("5"));
     }
 
     private void addNewTask(){

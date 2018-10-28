@@ -9,7 +9,7 @@ public class LoginView {
         System.out.println("Enter password: ");
     }
     public void printMenu(){
-        System.out.println("Welcome in Task Reminder! Thank you for using this awesome app.");
+        System.out.println('\n' + "Welcome in Task Reminder! Thank you for using this awesome app.");
         System.out.println("1. login");
         System.out.println("2. register");
     }

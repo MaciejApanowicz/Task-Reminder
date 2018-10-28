@@ -53,5 +53,17 @@ public class FileService {
         }
         Files.write(file.toPath(),taskString.getBytes(),StandardOpenOption.APPEND);
     }
+    public List<Task> readAllTasks()throws IOException {
+        File file = new File("Tasks.txt");
+
+        List<String> listOfLines = Files.readAllLines(file.toPath());
+        List<Task> tasks = new ArrayList<>();
+        for (String s: listOfLines){
+            String [] splitedTaskData = s.split("\\|");
+            tasks.add(new Task(splitedTaskData[0],splitedTaskData[1],Boolean.getBoolean(splitedTaskData[2])));
+        }
+        System.out.println(tasks.get(0).toString());
+        return tasks;
+    }
 }
 
