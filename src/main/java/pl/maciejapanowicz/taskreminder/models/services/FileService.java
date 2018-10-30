@@ -62,7 +62,7 @@ public class FileService {
             String [] splitedTaskData = s.split("\\|");
             tasks.add(new Task(splitedTaskData[0],splitedTaskData[1],Boolean.getBoolean(splitedTaskData[2])));
         }
-        System.out.println(tasks.get(0).toString());
+        //System.out.println(tasks.get(0).toString());
         return tasks;
     }
 }

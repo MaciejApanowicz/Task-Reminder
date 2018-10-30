@@ -34,15 +34,15 @@ class UserController {
                 }
                 case "2": {
                     try {
-                        taskService.getUserTasks(UserLoggedIn.getINSTANCE().getUsername());
+                        System.out.println(taskService.getUserTasks(UserLoggedIn.getINSTANCE().getUsername()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    //todo Create logic for marking task as completed
                     break;
                 }
                 case "3":{
-                    System.out.println("In progress. Not ready yet");
+                    System.out.println("Sorry, this functionality is not ready yet");
+                    //todo Create logic for marking task as completed
                     break;
                 }
                 case "4":{
