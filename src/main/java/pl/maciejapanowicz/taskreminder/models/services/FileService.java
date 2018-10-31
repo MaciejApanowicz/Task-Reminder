@@ -58,11 +58,10 @@ public class FileService {
 
         List<String> listOfLines = Files.readAllLines(file.toPath());
         List<Task> tasks = new ArrayList<>();
-        for (String s: listOfLines){
-            String [] splitedTaskData = s.split("\\|");
+        for (String line: listOfLines){
+            String [] splitedTaskData = line.split("\\|");
             tasks.add(new Task(splitedTaskData[0],splitedTaskData[1],Boolean.getBoolean(splitedTaskData[2])));
         }
-        //System.out.println(tasks.get(0).toString());
         return tasks;
     }
 }

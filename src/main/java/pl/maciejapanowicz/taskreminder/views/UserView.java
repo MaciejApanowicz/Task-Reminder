@@ -3,7 +3,13 @@ package pl.maciejapanowicz.taskreminder.views;
 public class UserView {
 
     public void showWelcomeMessage(String username){
-        System.out.println("Hello " + username +". You are now logged in.");
+        System.out.println("Hello " + username +"! You are now logged in." + '\n');
+    }
+    public void showUserTasks (String username){
+        System.out.println(username + ", those are your tasks:" + '\n');
+    }
+    public void informAboutLuckOfTask() {
+        System.out.println("You don't have any tasks yet");
     }
     public void showUserMenu(){
         System.out.println("1. Add new task");
@@ -13,7 +19,7 @@ public class UserView {
         System.out.println("5. Exit Task Reminder");
     }
     public void getUserAnswer(){
-        System.out.println("Now, type your choice from options available in menu");
+        System.out.println("\nType the operation of your choice:");
     }
     public void informAboutWrongCommand(){
         System.out.println("Wrong command.");

@@ -33,8 +33,13 @@ class UserController {
                     break;
                 }
                 case "2": {
+                    userView.showUserTasks(UserLoggedIn.getINSTANCE().getUsername());
                     try {
-                        System.out.println(taskService.getUserTasks(UserLoggedIn.getINSTANCE().getUsername()));
+                        if (taskService.getUserTasks(UserLoggedIn.getINSTANCE().getUsername()).size()==0)
+                            userView.informAboutLuckOfTask();
+                        for (Task task : taskService.getUserTasks(UserLoggedIn.getINSTANCE().getUsername())){
+                            System.out.println(task.getContent());
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
