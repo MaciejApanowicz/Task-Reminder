@@ -19,4 +19,17 @@ public class TaskService {
                 .filter(s -> s.getOwner().equals(username))
                 .collect(Collectors.toList());
     }
+    public void update (Task chosenTask) throws IOException {
+        List<Task> allTasks = fileService.readAllTasks();
+
+        fileService.cleanUp();
+
+        for (Task task : allTasks){
+            if (task.getOwner().equals(chosenTask.getOwner()) &&
+                task.getContent().equals(chosenTask.getContent())){
+                task.setDone(true);
+            }
+            fileService.addTaskToFile(task);
+        }
+    }
 }

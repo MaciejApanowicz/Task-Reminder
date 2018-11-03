@@ -5,9 +5,7 @@ public class UserView {
     public void showWelcomeMessage(String username){
         System.out.println("Hello " + username +"! You are now logged in." + '\n');
     }
-    public void showUserTasks (String username){
-        System.out.println(username + ", those are your tasks:" + '\n');
-    }
+
     public void informAboutLuckOfTask() {
         System.out.println("You don't have any tasks yet");
     }
@@ -33,5 +31,8 @@ public class UserView {
     public void confirmTaskAdded (String username, String taskAdded){
         System.out.println("Good " + username + "! This task: '" + taskAdded +
                 "' has been successfully added to you schedule. Good luck! :) " );
+    }
+    public void askWhichTaskMarkAsDone(){
+        System.out.println("Type task ID to mark it as done");
     }
 }

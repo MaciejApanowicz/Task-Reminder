@@ -21,6 +21,10 @@ public class Task {
         return isDone;
     }
 
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
