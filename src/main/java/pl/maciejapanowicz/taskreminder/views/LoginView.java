@@ -12,6 +12,7 @@ public class LoginView {
         System.out.println('\n' + "Welcome in Task Reminder! Thank you for using this awesome app.");
         System.out.println("1. login");
         System.out.println("2. register");
+        System.out.println("3. exit");
     }
     public void askForMenuChoose(){
         System.out.println("Type the number of your choice");

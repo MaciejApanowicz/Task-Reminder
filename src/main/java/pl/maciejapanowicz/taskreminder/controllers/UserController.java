@@ -36,12 +36,13 @@ class UserController {
                 }
                 case "2": {
                     showUserTask();
+                    userView.showUserMenu();
                     break;
                 }
                 case "3":{
                     showUserTask();
                     markTaskAsDone();
-                    showUserTask();
+                    userView.showUserMenu();
                     break;
                 }
                 case "4":{
@@ -98,11 +99,12 @@ class UserController {
             chosenTask.setDone(true);
             try {
                 taskService.update(chosenTask);
+                userView.taskUpdateConfirmation();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("no przecież jest już done");
+            userView.informUserThatTaskIsAlreadyMarkedAsDone();
         }
     }
 

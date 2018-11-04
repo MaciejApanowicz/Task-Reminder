@@ -2,7 +2,6 @@ package pl.maciejapanowicz.taskreminder.models;
 
 public class UserLoggedIn {
     private static UserLoggedIn INSTANCE = new UserLoggedIn();
-
     private UserLoggedIn(){}
 
     public static UserLoggedIn getINSTANCE() {

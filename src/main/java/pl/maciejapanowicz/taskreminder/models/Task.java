@@ -20,17 +20,14 @@ public class Task {
     public boolean isItDone(){
         return isDone;
     }
-
     public void setDone(boolean done) {
         isDone = done;
     }
 
     @Override
     public String toString() {
-        return "Task{" +
-                "owner='" + owner + '\'' +
-                ", content='" + content + '\'' +
-                ", isDone=" + isDone +
-                '}';
+        return "owner:" + owner +
+                ", isDone?: " + isDone +
+                ",  task: '" + content + '\'';
     }
 }

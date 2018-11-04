@@ -40,6 +40,10 @@ public class AuthController {
                 getRegisterData();
                 break;
             }
+            case 3: {
+                System.exit(-1);
+                break;
+            }
             default:{
                 loginView.informAboutWrongCommand();
             }
